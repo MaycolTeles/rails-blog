@@ -1,0 +1,26 @@
+<h1>Article</h1>
+
+<h2><%= @article.title %></h2>
+<p><%= @article.body %></p>
+
+<ul>
+    <li>
+        <%= link_to "Edit", edit_article_path(@article) %>
+    </li>
+    <li>
+        <%= turbo_include_tags %>
+        <%= link_to "Destroy", article_path(@article), data: {
+            turbo_method: :delete,
+            turbo_confirm: "Are you sure?"
+        } %>
+    </li>
+</ul>
+
+
+<h2>Comments</h2>
+<p>Total of comments: <%= Comment.public_count %></p>
+<%= render @article.comments %>
+
+
+<h2>Add a comment:</h2>
+<%= render 'comments/form' %>
